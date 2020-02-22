@@ -62,4 +62,29 @@
     <% if (theme.rss) { %>
       <link rel="alternate" href="<%= url_for(theme.rss) %>" title="<%= config.title %>" type="application/atom+xml" />
     <% } %>
+    <!-- mathjax -->
+    <% if (is_post() && page.mathjax) { %>
+      <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            autoload: {
+              color: [],
+              colorV2: ['color']
+            },
+            packages: {'[+]': ['noerrors']}
+          },
+          options: {
+            ignoreHtmlClass: 'tex2jax_ignore',
+            processHtmlClass: 'tex2jax_process'
+          },
+          loader: {
+            load: ['[tex]/noerrors']
+          }
+        };
+        </script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+    <% } %>
 </head>
