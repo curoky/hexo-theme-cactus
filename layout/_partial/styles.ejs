@@ -1,3 +1,11 @@
 <!-- styles -->
-<%- css('lib/font-awesome/css/all.min.css') %>
-<%- css('lib/justified-gallery/css/justifiedGallery.min.css') %>
+<% if (theme.vendors.fontAwesome) { %>
+  <link rel="stylesheet" href="<%- theme.vendors.fontAwesome %>">
+<% } else { %>
+  <%- css('lib/font-awesome/css/all.min.css') %>
+<% } %>
+<% if (theme.vendors.justifiedGallery && theme.vendors.justifiedGallery.css) { %>
+  <link rel="stylesheet" href="<%- theme.vendors.justifiedGallery.css %>">
+<% } else { %>
+  <%- css('lib/justified-gallery/css/justifiedGallery.min.css') %>
+<% } %>

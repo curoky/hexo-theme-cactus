@@ -1,15 +1,29 @@
 <!-- jquery -->
-<%- js('lib/jquery/jquery.min') %>
-<%- js('lib/justified-gallery/js/jquery.justifiedGallery.min.js') %>
+<% if (theme.vendors.jquery) { %>
+  <script src="<%- theme.vendors.jquery %>"></script>
+<% } else { %>
+  <%- js('lib/jquery/jquery.min') %>
+<% } %>
+<% if (theme.vendors.justifiedGallery && theme.vendors.justifiedGallery.js) { %>
+  <script src="<%- theme.vendors.justifiedGallery.js %>"></script>
+<% } else { %>
+  <%- js('lib/justified-gallery/js/jquery.justifiedGallery.min.js') %>
+<% } %>
+
 <!-- clipboard -->
 <% if (is_post()){ %>
-  <%- js('lib/clipboard/clipboard.min') %>
+  <% if (theme.vendors.clipboard) { %>
+    <script src="<%- theme.vendors.clipboard %>"></script>
+  <% } else { %>
+    <%- js('lib/clipboard/clipboard.min') %>
+  <% } %>
+
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
     var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"<%= __('tooltip.copy_tip') %>\">";
     btn += '<i class="far fa-clone"></i>';
-    btn += '</span>'; 
+    btn += '</span>';
     // mount it!
     $(".highlight table").before(btn);
     var clip = new ClipboardJS('.btn-copy', {
